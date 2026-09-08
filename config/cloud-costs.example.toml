@@ -1,0 +1,35 @@
+# This file is safe to commit. Copy it to config/cloud-costs.toml and customize it.
+
+[monitor]
+# Valid values: aws, azure, gcp, cloudflare
+providers = ["aws", "azure", "gcp"]
+currency = "USD"
+thresholds = [0.80, 0.90, 1.00]
+
+[budgets]
+# Amounts are in the billing currency of each provider. No currency conversion is done.
+global = 1000
+aws = 300
+azure = 400
+gcp = 300
+
+[aws]
+region = "us-east-1"
+
+[azure]
+subscription_id = "00000000-0000-0000-0000-000000000000"
+
+[gcp]
+billing_export_table = "my-project.billing.gcp_billing_export_v1_XXXXXX"
+
+[cloudflare]
+# Required only when "cloudflare" is selected. It comes from your external collector.
+month_to_date_cost = 0
+currency = "USD"
+
+[notifications]
+# Secrets stay in .env. Set either destination to false to disable it.
+slack = true
+telegram = false
+# This is an identifier, not a credential. It can live here or be overridden by env.
+telegram_chat_id = "-1001234567890"
