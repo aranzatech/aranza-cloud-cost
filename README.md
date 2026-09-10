@@ -20,6 +20,19 @@ After publishing the package on PyPI, the command becomes:
 pip install aranza-cloud-costs
 ```
 
+### Included dependencies
+
+The base installation installs the following dependencies so every supported cloud adapter is immediately available:
+
+| Dependency | Purpose |
+| --- | --- |
+| `boto3` | Queries AWS Cost Explorer. |
+| `azure-identity` | Obtains credentials for Azure Cost Management. |
+| `google-cloud-bigquery` | Queries the GCP Cloud Billing export table. |
+| `tomli` | Reads TOML configuration on Python 3.10 only; Python 3.11+ uses the standard library. |
+
+It does **not** install a web framework, scheduler, database, PDF generator, Slack SDK, or Telegram SDK. The library uses standard HTTPS calls for Slack and Telegram notifications, and your application chooses how and when to run `check()`.
+
 For local development:
 
 ```bash
