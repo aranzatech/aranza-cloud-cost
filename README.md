@@ -6,17 +6,17 @@ The library does not run a worker on its own. Call it from your backend, a cron 
 
 ## Installation
 
-Install only the cloud adapters you need:
+Install the package once. It includes the AWS, Azure, and GCP adapters; the configuration determines which providers are queried.
 
 ```bash
-pip install "aranza-cloud-costs[aws,azure,gcp]"
+pip install aranza-cloud-costs
 ```
 
 For local development:
 
 ```bash
 cd AranzaTech/aranza-cloud-costs
-python3 -m pip install -e ".[aws,azure,gcp,dev]"
+python3 -m pip install -e ".[dev]"
 ```
 
 ## Configuration
@@ -84,10 +84,9 @@ if report.errors:
 
 ### GCP Billing export to BigQuery
 
-Install the GCP adapter and configure Application Default Credentials. In production, prefer Workload Identity; locally, `GOOGLE_APPLICATION_CREDENTIALS` can point to a service-account JSON file outside the repository.
+Configure Application Default Credentials. In production, prefer Workload Identity; locally, `GOOGLE_APPLICATION_CREDENTIALS` can point to a service-account JSON file outside the repository.
 
 ```bash
-pip install "aranza-cloud-costs[gcp]"
 export GOOGLE_APPLICATION_CREDENTIALS=/secure/path/gcp-billing-reader.json
 ```
 
@@ -120,10 +119,9 @@ GCP requires Cloud Billing export to BigQuery and read access to that table. The
 
 ### Azure Cost Management
 
-Install the Azure adapter. `DefaultAzureCredential` resolves managed identity, workload identity, Azure CLI credentials, or service-principal environment variables in its standard order.
+`DefaultAzureCredential` resolves managed identity, workload identity, Azure CLI credentials, or service-principal environment variables in its standard order.
 
 ```bash
-pip install "aranza-cloud-costs[azure]"
 export AZURE_TENANT_ID=<tenant-id>
 export AZURE_CLIENT_ID=<client-id>
 export AZURE_CLIENT_SECRET=<client-secret>
@@ -158,10 +156,9 @@ The configured identity needs permission to query Cost Management at the subscri
 
 ### AWS Cost Explorer
 
-Install the AWS adapter. The boto3 credential chain is used, so a workload IAM role is preferred; local development can use a named AWS profile.
+The boto3 credential chain is used, so a workload IAM role is preferred; local development can use a named AWS profile.
 
 ```bash
-pip install "aranza-cloud-costs[aws]"
 export AWS_PROFILE=cost-reader
 ```
 

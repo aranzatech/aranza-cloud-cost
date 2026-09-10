@@ -21,7 +21,7 @@ class AzureCostProvider(CostProvider):
         try:
             from azure.identity import DefaultAzureCredential
         except ImportError as exc:
-            raise ProviderError("Azure support requires: pip install 'aranza-cloud-costs[azure]'.") from exc
+            raise ProviderError("azure-identity is missing. Reinstall aranza-cloud-costs.") from exc
 
         assert self.config.azure_subscription_id
         today = date.today()

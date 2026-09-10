@@ -18,7 +18,7 @@ class AwsCostProvider(CostProvider):
         try:
             import boto3
         except ImportError as exc:
-            raise ProviderError("AWS support requires: pip install 'aranza-cloud-costs[aws]'.") from exc
+            raise ProviderError("boto3 is missing. Reinstall aranza-cloud-costs.") from exc
 
         today = date.today()
         period_start = today.replace(day=1)

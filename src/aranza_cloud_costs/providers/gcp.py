@@ -18,7 +18,7 @@ class GcpCostProvider(CostProvider):
         try:
             from google.cloud import bigquery
         except ImportError as exc:
-            raise ProviderError("GCP support requires: pip install 'aranza-cloud-costs[gcp]'.") from exc
+            raise ProviderError("google-cloud-bigquery is missing. Reinstall aranza-cloud-costs.") from exc
 
         assert self.config.gcp_billing_export_table
         today = date.today()
