@@ -8,6 +8,14 @@ The library does not run a worker on its own. Call it from your backend, a cron 
 
 Install the package once. It includes the AWS, Azure, and GCP adapters; the configuration determines which providers are queried.
 
+Until the package is published on PyPI, install it directly from GitHub:
+
+```bash
+pip install git+https://github.com/aranzatech/aranza-cloud-cost.git
+```
+
+After publishing the package on PyPI, the command becomes:
+
 ```bash
 pip install aranza-cloud-costs
 ```
